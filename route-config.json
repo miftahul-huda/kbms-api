@@ -1,4 +1,8 @@
 [
     { "path" :  "", "router"  : "./routes/web" },
-    { "path" :  "/sample", "router"  : "./routes/sample", "logic" : "./modules/logic/sample_logic" }
+    { "path" :  "/llm", "router"  : "./routes/llm", "logic" : "./modules/logic/llmlogic" },
+    { "path" :  "/kbms", "router"  : "./routes/kbms", "logic" : "./modules/logic/kbmslogic" },
+    { "path" :  "/kbmsdocument", "router"  : "./routes/kbmsdocument", "logic" : "./modules/logic/kbmsdocumentlogic" },
+    { "path" :  "/kbmsdocumentembedding", "router"  : "./routes/kbmsdocumentembedding", "logic" : "./modules/logic/kbmsdocumentembeddinglogic" }
+
 ]
