@@ -1,3 +1,5 @@
+const { cosineDistance } = require('pgvector/sequelize');
+
 class CrudRouter {
 
 
@@ -11,6 +13,9 @@ class CrudRouter {
         router.post('/create', function (req, res){
             me.init(req, res);
             let o = req.body;
+            console.log("req.body")
+            console.log(o)
+            
             let logic = router.logic;
             logic.session = req.session;
         

@@ -36,9 +36,13 @@ app.use(cors());
 
 
 //Consider all request as application/json
-app.use(express.json({type: '*/*'}));
+//app.use(express.json({type: '*/*'}));
 // parse application/json
-app.use(bodyParser.json())
+//app.use(bodyParser.json())
+
+app.use(bodyParser.json({ limit: '50mb' })); 
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
 
 /* uncomment this if session is needed */
 /*

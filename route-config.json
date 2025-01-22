@@ -3,6 +3,7 @@
     { "path" :  "/llm", "router"  : "./routes/llm", "logic" : "./modules/logic/llmlogic" },
     { "path" :  "/kbms", "router"  : "./routes/kbms", "logic" : "./modules/logic/kbmslogic" },
     { "path" :  "/kbmsdocument", "router"  : "./routes/kbmsdocument", "logic" : "./modules/logic/kbmsdocumentlogic" },
-    { "path" :  "/kbmsdocumentembedding", "router"  : "./routes/kbmsdocumentembedding", "logic" : "./modules/logic/kbmsdocumentembeddinglogic" }
+    { "path" :  "/kbmsdocumentembedding", "router"  : "./routes/kbmsdocumentembedding", "logic" : "./modules/logic/kbmsdocumentembeddinglogic" },
+    { "path" :  "/upload", "router"  : "./routes/upload" }
 
 ]

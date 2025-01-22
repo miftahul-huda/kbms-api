@@ -7,7 +7,8 @@ class KBMSDocumentModel extends Model {
             documentName: DataTypes.STRING,
             documentPath: DataTypes.STRING,
             createdBy: DataTypes.STRING,
-            kbmsID: DataTypes.INTEGER
+            kbmsID: DataTypes.INTEGER,
+            status: DataTypes.STRING
         }, 
         { sequelize, modelName: 'kbmsdocument', tableName: 'kbmsdocument', force: force });
     }
