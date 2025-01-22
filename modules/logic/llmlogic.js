@@ -43,7 +43,7 @@ class LLMLogic extends CrudLogic {
             o.downloaded = 0;
             await LLMModel.update(o, { where: { id: id } });
 
-            this.pullModel(o.title, function(json){
+            this.pullModel(o.title, async function(json){
 
                 try
                 {
@@ -51,20 +51,28 @@ class LLMLogic extends CrudLogic {
                     if(Number.isNaN(percentage))
                         percentage = 0;
                     percentage = Math.round(percentage);
+
+                    //console.log(percentage + " - " + previousPercentage)
+
                     if(percentage != previousPercentage)
                     {
+                        console.log("updatinnnggg......")
                         o.downloaded = percentage;
-                        LLMModel.update(o, { where: { id: id } });
+                        let dt = { downloaded: percentage }
+                        if(json.total != null)
+                            dt.size = json.total;
+
+                        await LLMModel.update(dt, { where: { id: id } });
                         previousPercentage = percentage;
                     }
 
                 }
                 catch(e)
                 {
-
+                    console.log(e)
                 }
-                if(this.progressCallback != null)
-                    this.progressCallback(json);
+                if(progressCallback != null)
+                    progressCallback(json);
             })
         }
         catch(e)

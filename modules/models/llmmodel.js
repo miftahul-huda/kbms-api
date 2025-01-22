@@ -7,7 +7,8 @@ class LLMModel extends Model {
             title: DataTypes.STRING,
             description: DataTypes.STRING,
             modelPath: DataTypes.TEXT,
-            downloaded: DataTypes.INTEGER
+            downloaded: DataTypes.INTEGER,
+            size: DataTypes.DECIMAL
         }, 
         { sequelize, modelName: 'llm', tableName: 'llm', force: force });
     }

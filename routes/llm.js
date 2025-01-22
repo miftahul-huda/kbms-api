@@ -11,6 +11,8 @@ class LLMRouter extends CrudRouter{
         router.get('/download/:id', function (req, res){
             me.init(req, res);
             let id = req.params.id;
+
+            console.log("DOWNLOAD")
             
             let logic = router.logic;
             logic.session = req.session;
