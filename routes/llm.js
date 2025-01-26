@@ -18,8 +18,8 @@ class LLMRouter extends CrudRouter{
             logic.session = req.session;
     
             logic.download(id, function(progress){
-                console.log("progress")
-                console.log(progress)
+                //console.log("progress")
+                //console.log(progress)
                 res.write(JSON.stringify(progress));
             });
 

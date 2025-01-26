@@ -38,15 +38,27 @@ class LLMLogic extends CrudLogic {
     {
         try
         {
+            let me = this;
             let o = await LLMModel.findOne({ where: { id: id } });
             let previousPercentage = 0;
             o.downloaded = 0;
             await LLMModel.update(o, { where: { id: id } });
 
-            this.pullModel(o.title, async function(json){
+            this.digestName = "";
+            this.index = 0;
+
+            this.pullModel(o.title, function(json){
 
                 try
                 {
+                    if(me.index == 0 && json.digest != null)
+                    {
+                        console.log("INDEX")
+                        me.digestName = json.digest;
+                        //console.log(me.digestName)
+                        me.index++;
+                    }
+
                     let percentage = json.completed / json.total * 100;
                     if(Number.isNaN(percentage))
                         percentage = 0;
@@ -54,16 +66,20 @@ class LLMLogic extends CrudLogic {
 
                     //console.log(percentage + " - " + previousPercentage)
 
-                    if(percentage != previousPercentage)
+                    //console.log(percentage +  " ==== " + previousPercentage)
+                    //console.log(me.digestName + " ==== " + json.digest)
+                    //console.log(me.digestName === json.digest)
+
+                    if(percentage != previousPercentage && me.digestName === json.digest)
                     {
-                        console.log("updatinnnggg......")
+                        console.log("updatinnnggg...... " + percentage)
                         o.downloaded = percentage;
                         let dt = { downloaded: percentage }
                         if(json.total != null)
                             dt.size = json.total;
 
-                        await LLMModel.update(dt, { where: { id: id } });
                         previousPercentage = percentage;
+                        LLMModel.update(dt, { where: { id: id } });
                     }
 
                 }
